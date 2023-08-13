@@ -1,0 +1,42 @@
+<div class="side-bar w-full h-screen">
+  <div class="menu text-xl h-auto">
+    <ul>
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="admin-menu-item"
+        routerLink="/admin"
+      >
+        Home
+      </li>
+
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="/admin/contacts-of-user"
+				class="admin-menu-item"
+      >
+        Contacts
+      </li>
+
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="/admin/options"
+				class="admin-menu-item"
+      >
+        Options
+      </li>
+
+      <li
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLink="/admin/groups"
+				class="admin-menu-item"
+      >
+        Groups
+      </li>
+
+    </ul>
+  </div>
+</div>

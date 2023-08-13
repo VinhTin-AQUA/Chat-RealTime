@@ -1,0 +1,21 @@
+.container-message {
+  border-radius: 6px;
+  background: rgb(165, 243, 252);
+  background: linear-gradient(
+    183deg,
+    rgba(165, 243, 252, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  box-shadow: 5px 5px 10px #666262, -5px -5px 10px #ffffff;
+}
+
+.container-message-error {
+  border-radius: 6px;
+
+  background: rgb(255,0,0);
+  background: linear-gradient(183deg, rgba(255,0,0,1) 0%, rgba(255,255,255,1) 100%);
+  
+  box-shadow: 5px 5px 10px #666262, -5px -5px 10px #ffffff;
+}
+
+

@@ -1,0 +1,27 @@
+.input-container{
+	@apply flex items-center justify-between w-full sm:w-[90%] md:w-[70%] h-[50px] rounded-full border-2 border-indigo-500 mb-3
+}
+
+.input-container-error{
+	@apply flex items-center justify-between w-full sm:w-[70%] h-[50px] rounded-full border-2 border-red-500 mb-1
+}
+
+.input-field{
+	@apply w-[90%] mr-4 sm:w-[85%] sm:mx-3 px-4 py-2 text-[1.2em] outline-none
+}
+
+.input-icon {
+	@apply ml-2 w-6 h-6 sm:w-8 sm:h-8 sm:text-[30px] text-[20px] text-indigo-500
+}
+
+.input-icon-error {
+	@apply ml-2 w-7 h-7 sm:w-10 sm:h-10 sm:text-[40px] text-[30px] text-red-500
+}
+
+.login-btn {
+@apply w-[90%] md:w-[50%] bg-blue-500 p-2 rounded-full text-sm sm:text-xl text-white hover:bg-blue-700 duration-75
+}
+
+.errors-container {
+	@apply mb-4 text-red-500 
+}

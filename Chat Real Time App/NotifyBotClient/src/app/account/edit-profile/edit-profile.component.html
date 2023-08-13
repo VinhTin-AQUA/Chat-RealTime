@@ -1,0 +1,144 @@
+<div class="w-screen mb-10">
+  <div class="mt-10 w-full flex flex-col items-center">
+    <div class="text-center border-b-2 pb-1 border-b-black w-[40%] mb-[40px]">
+      <h1 class="w-full h-full">Your profile</h1>
+    </div>
+
+    <div class="flex w-full ">
+      <div class="w-1/2 flex justify-center">
+        <form
+          [formGroup]="updateForm"
+          (ngSubmit)="update()"
+          autocomplete="off"
+          class="flex items-center flex-col w-[70%]"
+        >
+          <!-- first name -->
+          <div class="input-container">
+            <mat-icon class="input-icon"
+              >account_circle</mat-icon
+            >
+            <input
+              spellcheck="false"
+              formControlName="firstName"
+              class="input-field"
+              type="text"
+              placeholder="First Name"
+            />
+          </div>
+  
+          <!-- last name -->
+          <div class="input-container">
+            <mat-icon class="input-icon"
+              >account_circle</mat-icon
+            >
+            <input
+              spellcheck="false"
+              formControlName="lastName"
+              class="input-field"
+              type="text"
+              placeholder="Last Name"
+            />
+          </div>
+  
+          <!-- email -->
+          <div class="input-container">
+            <mat-icon class="input-icon"
+              >account_circle</mat-icon
+            >
+            <input
+              spellcheck="false"
+              formControlName="email"
+              class="input-field"
+              type="text"
+              placeholder="Email"
+              readonly
+            />
+          </div>
+  
+          <!-- old password -->
+          <div class="input-container">
+            <mat-icon class="input-icon"
+              >account_circle</mat-icon
+            >
+            <input
+              spellcheck="false"
+              formControlName="oldPassword"
+              class="input-field"
+              type="text"
+              placeholder="Old Password"
+            />
+          </div>
+  
+          <!-- new password -->
+          <div class="input-container">
+            <mat-icon class="input-icon"
+              >account_circle</mat-icon
+            >
+            <input
+              spellcheck="false"
+              formControlName="newPassword"
+              class="input-field"
+              type="text"
+              placeholder="New Password"
+            />
+          </div>
+  
+          <!-- re-enter password -->
+          <div class="input-container">
+            <mat-icon class="input-icon"
+              >account_circle</mat-icon
+            >
+            <input
+              spellcheck="false"
+              formControlName="reEnterPassword"
+              class="input-field disable"
+              type="text"
+              placeholder="Re-enter Paswword"
+            />
+          </div>
+  
+          <!-- error mesages -->
+          <div class="errors-container" *ngIf="errorMessages.length > 0">
+            <ul>
+              <li *ngFor="let err of errorMessages">{{ err }}</li>
+            </ul>
+          </div>
+  
+          <div class="flex items-center justify-center w-full h-[40px]">
+            <button
+              type="submit"
+              class="w-[50%] bg-blue-500 p-2 rounded-full text-xl text-white hover:bg-blue-700 duration-75"
+            >
+              Update your profile
+            </button>
+          </div>
+  
+          
+        </form>
+      </div>
+
+      <div  class="w-1/2 ">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Notice</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              If you don't change password, let password is empty.
+            </p>
+          </mat-card-content>
+          <img mat-card-image src="https://plus.unsplash.com/premium_photo-1676618539962-a492182bdae4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=645&q=80" alt="Security">
+
+          
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--<form >
+  <input type="text" [(ngModel)]="inputValue" />
+<button (click)="getInputValue()">Lấy giá trị</button>
+</form>-->

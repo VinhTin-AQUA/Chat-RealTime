@@ -1,0 +1,24 @@
+.input-container{
+	@apply flex items-center justify-between w-full sm:w-[70%] h-[50px] rounded-full border-2 border-indigo-500 mb-3
+}
+
+.input-container-error{
+	@apply flex items-center justify-between w-full sm:w-[70%] h-[50px] rounded-full border-2 border-red-500 mb-1
+}
+
+
+.input-field{
+	@apply w-[70%] mr-4 sm:w-[85%] sm:mr-3 pl-4 py-2 text-[1.2em] outline-none
+}
+
+.input-icon {
+	@apply ml-2 w-7 h-7 sm:w-10 sm:h-10 sm:text-[40px] text-[30px] text-indigo-500
+}
+
+.input-icon-error {
+	@apply ml-2 w-7 h-7 sm:w-10 sm:h-10 sm:text-[40px] text-[30px] text-red-500
+}
+
+.errors-container {
+	@apply mb-4 text-red-500 
+}

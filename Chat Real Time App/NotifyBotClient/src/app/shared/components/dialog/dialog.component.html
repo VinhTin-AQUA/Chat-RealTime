@@ -1,0 +1,26 @@
+<div class="app-dialog-container" [ngClass]="[data.status === true ? 'border-green-500' : 'border-red-500']">
+
+  <div mat-dialog-title>
+    <div class="app-dialog-header" [ngClass]="[data.status === true ? 'border-b-green-500 text-green-500' : 'border-b-red-500 text-red-500']">
+      
+      
+      <mat-icon *ngIf="data.status === false" class="relative">error</mat-icon>
+      <mat-icon *ngIf="data.status === true" class="relative">check_circle</mat-icon>
+
+      <span class="max-w-[267px] break-words">{{ data.title }}</span>
+    </div>
+  </div>
+
+  <div mat-dialog-content>
+    <div class=" app-dialog-content" [ngClass]="[data.status === true ? 'text-green-500' : 'text-red-500']">
+      <p>{{ data.messages }}</p>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="" [ngClass]="[data.status === true ? 'bg-green-200' : 'bg-red-200']">
+    <!--<button mat-button (click)="onNoClick()">No Thanks</button>-->
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>
+			<span class="font-bold text-md" [ngClass]="[data.status === true ? 'text-green-500' : 'text-red-500']">Ok</span>
+		</button>
+  </div>
+</div>

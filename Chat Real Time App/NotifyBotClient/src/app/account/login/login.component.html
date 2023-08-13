@@ -1,0 +1,88 @@
+<div class="w-screen h-screen">
+  <div class="mt-28 w-full h-full flex flex-col items-center">
+    <!-- title -->
+    <div
+      class="text-center border-b-2 pb-1 border-b-black w-[40%] text-[3em] mb-[40px]"
+    >
+      <p class="">Login</p>
+    </div>
+
+    <div class="w-[50%]">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="login()"
+        autocomplete="off"
+        class="flex items-center flex-col"
+      >
+        <!-- email -->
+        <div [class]="validateInputContainer('email')">
+          <mat-icon [class]="validateInputField('email')"> email</mat-icon>
+          <input
+            formControlName="email"
+            class="input-field"
+            type="text"
+            placeholder="Email"
+            spellcheck="false"
+          />
+        </div>
+        <span
+          class="text-red-500"
+          *ngIf="submitted === true && loginForm.hasError('required', 'email')"
+        >
+          Email is required
+        </span>
+
+        <!-- password -->
+        <div [class]="validateInputContainer('password')">
+          <mat-icon [class]="validateInputField('password')">lock</mat-icon>
+          <input
+            formControlName="password"
+            class="input-field"
+            type="text"
+            placeholder="Password"
+            spellcheck="false"
+          />
+        </div>
+        <span
+          class="text-red-500"
+          *ngIf="
+            submitted === true && loginForm.hasError('required', 'password')
+          "
+        >
+          Password is required
+        </span>
+
+        <!-- errors -->
+        <div class="errors-container" *ngIf="errorMessages.length > 0">
+          <ul>
+            <li *ngFor="let err of errorMessages">{{err}}</li>
+          </ul>
+        </div>
+
+        <!-- button -->
+        <div class="flex items-center justify-center w-full h-[40px] mb-2">
+          <button type="submit" class="login-btn">Login</button>
+        </div>
+
+        <!-- login with Facebook -->
+        <!--<div class="flex items-center justify-center w-full h-[40px]">
+          <button class="login-btn">Login with Facebook</button>
+        </div>-->
+
+        <div class="mt-10">
+          <div class="flex gap-2">
+            <div class="text-blue-600">
+              <span routerLink="/account/forgot-password" class="cursor-pointer underline">Forgot password</span>
+            </div>
+
+            <div class="text-blue-600">
+              <button routerLink="/account/signup" class="underline">
+                Create an account
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.app-dialog-container {
+	@apply w-[650px] border-2 rounded-t-md
+}
+
+.app-dialog-content {
+	@apply  max-w-[600px] break-words
+}

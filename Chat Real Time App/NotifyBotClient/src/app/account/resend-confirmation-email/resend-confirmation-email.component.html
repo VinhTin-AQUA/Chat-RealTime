@@ -1,0 +1,25 @@
+<div class="h-screen flex items-center flex-col mt-20">
+
+	<div class="mb-10 text-center">
+		<p class="text-2xl font-bold text-red-500">Your email is not verified</p>
+		<span class="text-xl ">Please re-send verify email</span>
+	</div>
+
+	<form [formGroup]="formGroup" class="example-form border-[10px] border-[#fff7f7]" (ngSubmit)="resend()" autocomplete="off">
+		<mat-form-field class="example-full-width">
+			<mat-label>Email</mat-label>
+			<input spellcheck="false" type="email" matInput formControlName="email"
+						 placeholder="abc@example.com">
+			<mat-error *ngIf="formGroup.hasError('email', 'email') && !formGroup.hasError('required')">
+				Please enter a valid email address
+			</mat-error>
+			<mat-error *ngIf="formGroup.hasError('required', 'email')">
+				Email is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
+
+		<div class="my-[30px]">
+			<button type="submit" class="w-full" mat-raised-button color="primary">Re-send Email</button>
+		</div>
+	</form>
+</div>

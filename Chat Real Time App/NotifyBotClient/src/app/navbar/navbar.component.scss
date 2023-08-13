@@ -1,0 +1,24 @@
+.btn-login {
+  @apply py-2 px-4 bg-blue-500 text-white font-semibold rounded-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-blue-400 focus:ring-opacity-75 duration-75;
+}
+
+.menu-item{
+	@apply hover:bg-blue-700 hover:text-white mx-1 text-center p-4 w-[80px] duration-100 cursor-pointer
+}
+
+.menu-item-collapse{
+	@apply w-[150px] hover:bg-blue-700 px-4 py-2 hover:text-white text-center
+}
+
+.show-menu {
+	@apply  px-3 py-2 rounded-full text-black
+}
+
+.active{
+	@apply bg-blue-700 text-white
+}
+
+.btn-logout {
+	@apply bg-slate-400 rounded-md px-4 py-2
+}
+

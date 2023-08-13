@@ -1,0 +1,158 @@
+<div class="w-screen">
+  <div class="mt-10 w-full flex flex-col items-center">
+    <!-- title -->
+    <div class="text-center border-b-2 pb-1 border-b-black w-[40%] mb-[40px]">
+      <h1 class="w-full h-full">Signup</h1>
+    </div>
+
+    <div class="w-[50%]">
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="register()"
+        autocomplete="off"
+        class="flex items-center flex-col"
+      >
+        <!-- first name -->
+        <div [class]="validateInputContainer('firstName')">
+          <mat-icon [class]="validateInputField('firstName')"
+            >account_circle</mat-icon
+          >
+          <input
+            spellcheck="false"
+            formControlName="firstName"
+            class="input-field"
+            type="text"
+            placeholder="First Name"
+          />
+        </div>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && registerForm.hasError('required', 'firstName')
+          "
+        >
+          <b>First Name</b> must be required
+        </span>
+
+        <!-- last name -->
+        <div [class]="validateInputContainer('lastName')">
+          <mat-icon [class]="validateInputField('lastName')"
+            >account_circle</mat-icon
+          >
+          <input
+            spellcheck="false"
+            formControlName="lastName"
+            class="input-field"
+            type="text"
+            placeholder="Last Name"
+          />
+        </div>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && registerForm.hasError('required', 'lastName')
+          "
+        >
+          <b>Last Name</b> must be required
+        </span>
+
+        <!-- email -->
+        <div [class]="validateInputContainer('email')">
+          <mat-icon [class]="validateInputField('email')" class="input-icon">
+            email</mat-icon
+          >
+          <input
+            formControlName="email"
+            class="input-field"
+            type="text"
+            placeholder="Email"
+          />
+        </div>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && registerForm.hasError('required', 'email')
+          "
+        >
+          <b>Email</b> must be required
+        </span>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="submitted === true && registerForm.hasError('email', 'email')"
+        >
+          <b>Email</b> is invalid
+        </span>
+
+        <!-- password -->
+        <div [class]="validateInputContainer('password')">
+          <mat-icon [class]="validateInputField('password')" class="input-icon"
+            >lock</mat-icon
+          >
+          <input
+            type="password"
+            formControlName="password"
+            class="input-field"
+            placeholder="Password"
+          />
+        </div>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && registerForm.hasError('required', 'password')
+          "
+        >
+          <b>Password</b> must be required
+        </span>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true &&
+            (registerForm.hasError('minlength', 'password') ||
+              registerForm.hasError('maxlength', 'password'))
+          "
+        >
+          <b>Password</b> must be at least 6 and max length is 16 characters
+        </span>
+
+        <!-- re-enter password -->
+        <div [class]="validateInputContainer('reEnterPassword')">
+          <mat-icon
+            [class]="validateInputField('reEnterPassword')"
+            class="input-icon"
+            >lock</mat-icon
+          >
+          <input
+            formControlName="reEnterPassword"
+            class="input-field"
+            type="password"
+            placeholder="Re-enter password"
+          />
+        </div>
+
+        <!-- errors -->
+        <div class="errors-container" *ngIf="errorMessages.length > 0">
+          <ul>
+            <li *ngFor="let err of errorMessages">{{err}}</li>
+          </ul>
+        </div>
+
+        <!-- button -->
+        <div class="flex items-center justify-center w-full h-[40px]">
+          <button
+            type="submit"
+            class="w-[50%] bg-blue-500 p-2 rounded-full text-xl text-white hover:bg-blue-700 duration-75"
+          >
+            Sign Up
+          </button>
+        </div>
+
+        <div class="mt-10">
+          <h3>
+            You have an account?
+            <span routerLink="/account/login" class="cursor-pointer underline text-blue-600">Login</span>
+          </h3>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

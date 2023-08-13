@@ -1,0 +1,12 @@
+.loading-container {
+  @apply w-full bg-gray-200/40 fixed h-full top-[0px]
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.loading {
+  @apply flex items-center justify-center h-full w-full
+}
+

@@ -1,0 +1,25 @@
+/* Structure */
+.example-container {
+  position: relative;
+  @apply mt-4 ml-4;
+}
+
+.example-table-container {
+  position: relative;
+  overflow: auto;
+  min-height: 400px;
+  @apply  xl:min-w-[1200px] 
+          lg:min-w-[1000px]
+          md:min-w-[650px] 
+          sm:min-w-[100px]
+          w-[300px];
+}
+
+table {
+  width: 100%;
+}
+
+.option-button {
+  @apply cursor-pointer;
+}
+

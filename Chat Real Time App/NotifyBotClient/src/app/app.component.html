@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+
+<div class="">
+	<router-outlet></router-outlet>
+</div>
+
+<app-footer></app-footer>
+
+<div *ngIf="(sharedService.isLoading$ | async) as isLoading">
+	<app-loading (isLoading)="isLoading"></app-loading>
+</div>

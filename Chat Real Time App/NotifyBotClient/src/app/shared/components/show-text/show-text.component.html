@@ -1,0 +1,14 @@
+<div class="app-dialog-container border-[#3730a3]" >
+  <div mat-dialog-content>
+    <div class=" app-dialog-content text-gray-900">
+      <p>{{ data.messages }}</p>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="bg-[#bfdbfe]">
+    <!--<button mat-button (click)="onNoClick()">No Thanks</button>-->
+    <button mat-button (click)="onNoClick()" cdkFocusInitial>
+			<span class="font-bold text-md text-gray-900" >Ok</span>
+		</button>
+  </div>
+</div>

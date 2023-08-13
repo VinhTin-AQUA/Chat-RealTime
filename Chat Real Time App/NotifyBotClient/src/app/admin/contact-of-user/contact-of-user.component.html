@@ -1,0 +1,72 @@
+<div class="mt-4 ml-4 flex items-center justify-between gap-2">
+  <button (click)="deleteAllContacts()" color="warn" mat-raised-button>
+    Delete all contacts
+  </button>
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-table-container">
+    <table
+      mat-table
+      class="example-table"
+      [dataSource]="data"
+      matSort
+      matSortActive="created"
+      matSortDisableClear
+      matSortDirection="asc"
+    >
+      <!-- Email -->
+      <ng-container matColumnDef="Email">
+        <th class="font-bold" mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let contact">{{ contact.email }}</td>
+      </ng-container>
+
+      <!-- DateCreated -->
+      <ng-container matColumnDef="DateCreated">
+        <th class="font-bold" mat-header-cell *matHeaderCellDef>DateCreated</th>
+        <td mat-cell *matCellDef="let contact">
+          {{ contact.dateCreated | date }}
+        </td>
+      </ng-container>
+
+      <!-- Title -->
+      <ng-container matColumnDef="Title">
+        <th class="font-bold" mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let contact">{{ contact.title }}</td>
+      </ng-container>
+
+      <!-- Options -->
+      <ng-container matColumnDef="Options">
+        <th class="font-bold" mat-header-cell *matHeaderCellDef>Options</th>
+        <td mat-cell *matCellDef="let contact">
+          <mat-icon
+            mat-raised-button
+            matTooltip="delete contact"
+            matTooltipPosition="above"
+            class="option-button text-red-600"
+            (click)="deleteContact(contact)"
+            >delete</mat-icon
+          >
+
+          <mat-icon
+            mat-raised-button
+            matTooltip="detail"
+            matTooltipPosition="above"
+            class="option-button text-green-600"
+            (click)="showDescription(contact.description)"
+            >remove_red_eye</mat-icon
+          >
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    aria-label=""
+  ></mat-paginator>
+</div>

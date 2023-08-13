@@ -1,0 +1,162 @@
+<div
+  class="text-center text-[2em] font-bold mt-[20px] "
+  *ngIf="chatService.groupName === ''"
+>
+  No groups
+</div>
+
+<div
+  *ngIf="chatService.groupName !== ''"
+  class="w-[300px] sm:w-[600px] md:w-[950px] lg:w-[1200px] xl:w-[1420px] h-full flex"
+>
+
+  <!-- list group -->
+  <div class="w-[80px] sm:w-[150px] md:w-[250px] mt-2">
+    <!-- action -->
+    <div class="h-[47px] flex items-center p-2">
+      <button (click)="addGroup(inputRef)" class="">
+        <mat-icon class="icon-size-add-group-btn hover:text-blue-500"
+          >add_circle</mat-icon
+        >
+      </button>
+      <input
+        #inputRef
+        placeholder="Add room"
+        #inputRoom
+        class="add-field-group-btn"
+        spellcheck="false"
+        type="text"
+      />
+    </div>
+
+    <!-- list groups -->
+    <ul
+      class="p-2 overflow-y-scroll h-[600px] min-w-[100px] sm:min-w-[150px] md:w-full"
+    >
+      <li *ngFor="let group of chatService.groups" class="mb-1 cursor-pointer select-none">
+        <div class="group-item text-[0.6em] sm:text-[1em]">
+          <div
+            (click)="switchGroup(group)"
+            class="group-content"
+            [class]="active(group)"
+          >
+            {{ group.name }}
+          </div>
+
+          <button
+            (click)="leaveGroup(group)"
+            class="bg-red-100 hover:bg-red-300 hover:text-white p-2 duration-100 "
+          >
+            <mat-icon class="icon-switch-btn">first_page</mat-icon>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- messages -->
+  <div class="w-full h-full border-l-2 ">
+    <!-- room name -->
+    <div class="leading-9 pl-2 text-[2em] font-bold border-b-2">
+      <div>{{ chatService.groupName }}</div>
+    </div>
+
+    <!-- content -->
+    <div class="flex h-auto w-full ">
+      <!-- messages -->
+      <div
+        #messBox
+        class="w-4/5 h-[500px] border-r-2 overflow-y-scroll"
+      >
+        <div *ngFor="let mess of chatService.messages">
+          <div
+            *ngIf="mess.sender !== chatService.myName"
+            class="break-words text-[1.2em] m-2 p-2 rounded-2xl bg-[#fee2e2] flex gap-2"
+          >
+            <span class="w-1/6 font-bold text-blue-700">{{ mess.sender }}</span>
+            <span class="w-5/6 text-[#4c1d95]">{{ mess.content }}</span>
+          </div>
+
+          <div
+            *ngIf="mess.sender === chatService.myName"
+            class="break-words text-[1.2em] m-2 p-2 rounded-2xl bg-[#93c5fd] flex gap-2"
+          >
+            <span class="w-5/6 text-[#2e1065]">{{ mess.content }}</span>
+            <span class="text-right w-1/6 font-bold text-[#2e1065]">{{
+              mess.sender
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- user online -->
+      <div class="h-[500px] w-2/5 sm:w-1/5 ">
+        <div
+          class="overflow-hidden bg-blue-200 text-[#2e1065] leading-8 h-10 m-2 text-center text-xl"
+        >
+          Online
+        </div>
+
+        <div class="h-[380px] overflow-y-scroll">
+          <div *ngFor="let user of chatService.usersOnline">
+            <div
+              class="overflow-hidden text-[#2e1065] leading-8 h-10 m-2 text-center text-xl border-b-2 border-b-black"
+            >
+              {{ user }}
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="h-[100px] flex items-center"
+          *ngIf="chatService.groups.length > 0"
+        >
+          <button
+            (click)="addUserToGroup()"
+            class="w-full bg-red-400 mx-5 px-4 py-2 rounded-lg text-white hover:bg-blue-300 duration-100"
+          >
+            Add member
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- input message -->
+    <div class="flex items-center justify-between gap-3 m-2">
+      <textarea
+        #inputRef
+        name="content"
+        [(ngModel)]="content"
+        style="resize: none"
+        class="w-4/5 border-2 border-[#0ea5e9] outline-none focus:bg-yellow-100 h-24 rounded-md p-2 text-[1.2em] duration-100"
+        spellcheck="false"
+      ></textarea>
+
+      <button
+        (click)="sendMessage(inputRef)"
+        [class.disabled]="content.trim() === ''"
+        class="w-1/5 rounded-lg flex items-center justify-center mr-3 bg-red-300 hover:bg-blue-300 duration-100"
+      >
+        <div class="svg-wrapper-1">
+          <div class="svg-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path
+                fill="currentColor"
+                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+
+        <span class="font-[2em] py-2 px-4">Send</span>
+      </button>
+    </div>
+  </div>
+  
+</div>

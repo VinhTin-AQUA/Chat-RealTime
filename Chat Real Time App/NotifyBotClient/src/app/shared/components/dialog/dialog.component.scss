@@ -1,0 +1,11 @@
+.app-dialog-container {
+	@apply w-[350px] border-2 rounded-t-md
+}
+
+.app-dialog-header {
+	@apply flex items-start justify-start border-b-2 font-bold gap-2
+}
+
+.app-dialog-content {
+	@apply  max-w-[300px] break-words
+}

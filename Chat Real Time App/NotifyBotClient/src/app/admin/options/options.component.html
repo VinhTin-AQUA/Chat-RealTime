@@ -1,0 +1,84 @@
+<div class="mt-2 ml-2 flex gap-2 w-full">
+  <div class="content1 w-1/2">
+    <!-- delete user -->
+    <div class="mb-4">
+      <h1 class="text-center text-red-500">Delete all users</h1>
+      <button
+        (click)="deleteAllusers()"
+        class="w-full"
+        mat-raised-button
+        color="warn"
+      >
+        Delete All User
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+
+    <!-- seed user -->
+    <div class="flex flex-col">
+      <h1 class="text-center text-blue-500">Seed users</h1>
+
+      <!-- ------------------------------------------------------------------ -->
+      <form
+        [formGroup]="formGroup"
+        (ngSubmit)="seedUsers()"
+        autocomplete="off"
+        class="flex items-center flex-col"
+      >
+        <!-- number of users -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Number of users</mat-label>
+          <input
+            formControlName="numberOfUsers"
+            matInput
+            placeholder="5"
+            type="number"
+          />
+        </mat-form-field>
+
+        <!-- password -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            placeholder="abc123"
+            type="text"
+          />
+        </mat-form-field>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && formGroup.hasError('required', 'password')
+          "
+        >
+          <b>Password</b> must be required
+        </span>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true &&
+            (formGroup.hasError('minlength', 'password') ||
+              formGroup.hasError('maxlength', 'password'))
+          "
+        >
+          <b>Password</b> must be at least 6 and max length is 16 characters
+        </span>
+
+        <!-- errors -->
+        <div class="errors-container" *ngIf="errorMessages.length > 0">
+          <ul>
+            <li *ngFor="let err of errorMessages">{{ err }}</li>
+          </ul>
+        </div>
+
+        <button type="submit" mat-raised-button color="primary">
+          Seed User
+        </button>
+      </form>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+
+  <div class="content2 w-1/2 bg-red-500"></div>
+</div>

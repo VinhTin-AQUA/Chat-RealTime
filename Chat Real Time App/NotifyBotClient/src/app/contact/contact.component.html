@@ -1,0 +1,84 @@
+<div class="w-screen">
+  <div class="mt-10 w-full flex flex-col items-center">
+    <!-- title -->
+    <div
+      class="text-center border-b-2 pb-1 border-b-black w-[40%] text-[2em] mb-[40px]"
+    >
+      <p class="">Contact Us</p>
+    </div>
+
+    <div class="w-[50%]">
+      <form [formGroup]="formGroup" (ngSubmit)="sendContact()" autocomplete="off" class="flex items-center flex-col">
+        
+        <!-- your email -->
+        <div class="input-container">
+          <mat-icon class="input-icon"> email</mat-icon>
+          <input
+            class="input-field"
+            type="text"
+            placeholder="Your email"
+            spellcheck="false"
+            formControlName="email"
+          />
+        </div>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && formGroup.hasError('required', 'email')
+          "
+        >
+          <b>Email</b> must be required
+        </span>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="submitted === true && formGroup.hasError('email', 'email')"
+        >
+          <b>Email</b> is invalid
+        </span>
+
+        <!-- contact title -->
+        <div class="input-container">
+          <mat-icon class="input-icon">title</mat-icon>
+          <input
+            class="input-field"
+            type="text"
+            placeholder="Title"
+            spellcheck="false"
+            formControlName="title"
+          />
+        </div>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && formGroup.hasError('required', 'title')
+          "
+        >
+          <b>Email</b> must be required
+        </span>
+
+        <!-- Desciption -->
+        <div class="area-container">
+          <textarea
+            class="area-field"
+            spellcheck="false"
+            placeholder="Description"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <span
+          class="text-red-500 mb-3"
+          *ngIf="
+            submitted === true && formGroup.hasError('required', 'description')
+          "
+        >
+          <b>Email</b> must be required
+        </span>
+
+        <!-- button -->
+        <div class="flex items-center justify-center w-full h-[40px] mb-2">
+          <button type="submit" class="login-btn">Send contact</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

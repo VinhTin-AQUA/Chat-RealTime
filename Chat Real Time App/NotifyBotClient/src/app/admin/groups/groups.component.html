@@ -1,0 +1,39 @@
+<div class="mt-2 ml-2 flex gap-2 w-full">
+  <div class="content1 w-1/2">
+    <!-- list groups -->
+
+    <div
+      *ngFor="let group of groups"
+      class="my-2 p-1 hover:bg-blue-200 duration-75"
+    >
+      <div (click)="getOnlinesAndMembers(group)">
+        <div class="text-[1.5em]">
+          <span class="font-bold">{{ group.name }} - </span>
+          <span>Members: {{ group.memebers }}</span>
+        </div>
+        <span class="text-green-700 font-bold"
+          >Onlines: {{ group.onlines }}</span
+        >
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </div>
+
+  <div class="content2 w-1/2">
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th class="bg-red-400 text-white">Memebers</th>
+          <th class="bg-green-300">Onlines</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let member of members; let i = index" >
+          <th>{{member}}</th>
+          <th>{{onlines[i]}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

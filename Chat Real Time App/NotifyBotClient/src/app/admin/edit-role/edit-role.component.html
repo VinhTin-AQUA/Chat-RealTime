@@ -1,0 +1,36 @@
+<div class="mt-2 ml-2">
+  <h1>Choose roles for</h1>
+
+  <div class="flex items-center gap-2">
+    <button mat-raised-button color="primary" (click)="save()">Primary</button>
+
+    <mat-form-field>
+      <mat-label>User roles</mat-label>
+      <mat-select [formControl]="roles" multiple>
+        <mat-select-trigger>
+          {{roles.value?.[0] || ''}}
+          <span
+            *ngIf="(roles.value?.length || 0) > 1"
+            class="example-additional-selection"
+          >
+            (+{{ (roles.value?.length || 0) - 1 }}
+            {{ roles.value?.length === 2 ? "other" : "others" }})
+          </span>
+        </mat-select-trigger>
+        <mat-option
+          *ngFor="let topping of applicationRoles"
+          [value]="topping"
+          >{{ topping }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+	<div>
+		<ul *ngIf="roles">
+			<li *ngFor="let role of roles?.value">
+				{{role}}
+			</li>
+		</ul>
+	</div>
+</div>

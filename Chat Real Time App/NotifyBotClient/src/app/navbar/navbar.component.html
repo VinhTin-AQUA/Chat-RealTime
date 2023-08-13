@@ -1,0 +1,152 @@
+<nav class="h-[60px] w-screen bg-zinc-200">
+  <div class="mx-[5px] md:mx-[30px] flex items-center justify-between h-full">
+    <!-- collapse menu button -->
+    <div class="collapsed md:hidden">
+      <button class="show-menu" (click)="showMenu()">
+        <span><mat-icon>menu</mat-icon></span>
+      </button>
+    </div>
+
+    <!-- menu collapse -->
+    <div
+      class="z-10 md:hidden flex flex-row gap-2 items-center w-[150px] bg-slate-200 rounded-sm absolute top-[60px] duration-200"
+      [ngClass]="{
+        'left-0': collapsed === true,
+        'left-[-150px]': collapsed === false
+      }"
+    >
+      <!-- menu item -->
+      <ul class="flex flex-col">
+        <li
+          (click)="showMenu()"
+          class="menu-item-collapse"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span>Home</span>
+        </li>
+
+        <ng-container *ngIf="accountService.user$ | async as user">
+          <li
+            (click)="showMenu()"
+            class="menu-item-collapse"
+            routerLink="admin"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            *appUserRoles="user.lastName"
+          >
+            <span>Admin</span>
+          </li>
+        </ng-container>
+
+        <li
+          (click)="showMenu()"
+          class="menu-item-collapse"
+          routerLink="chat-rooms"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span>Rooms</span>
+        </li>
+
+        <li
+          (click)="showMenu()"
+          class="menu-item-collapse"
+          routerLink="contact"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span>Contact</span>
+        </li>
+        <li
+          (click)="showMenu()"
+          class="menu-item-collapse"
+          routerLink="about"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span>About</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- logo collapse -->
+    <div class="md:hidden" routerLink="/">
+      <img
+        src="https://th.bing.com/th/id/R.21aa10651ccc4d8a2dca610304c5e4d7?rik=Kyg41BisxMt1Yg&pid=ImgRaw&r=0"
+        class="h-[50px] rounded-full"
+        alt=""
+      />
+    </div>
+
+    <!-- menu -->
+    <div class="hidden md:visible md:flex gap-2 items-center h-full w-full">
+      <!-- logo -->
+      <div routerLink="/">
+        <img
+          src="https://th.bing.com/th/id/R.21aa10651ccc4d8a2dca610304c5e4d7?rik=Kyg41BisxMt1Yg&pid=ImgRaw&r=0"
+          class="h-[50px] rounded-full"
+          alt=""
+        />
+      </div>
+
+      <!-- menu item -->
+      <ul class="flex">
+        <li
+          class="menu-item"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span>Home</span>
+        </li>
+
+        <ng-container *ngIf="accountService.user$ | async as user">
+          <li
+            class="menu-item"
+            routerLink="admin"
+            routerLinkActive="active"
+            *appUserRoles="user.lastName"
+          >
+            <span>Admin</span>
+          </li>
+        </ng-container>
+
+        <li class="menu-item" routerLink="chat-rooms" routerLinkActive="active">
+          <span>Rooms</span>
+        </li>
+        <li class="menu-item" routerLink="contact" routerLinkActive="active">
+          <span>Contact</span>
+        </li>
+        <li class="menu-item" routerLink="about" routerLinkActive="active">
+          <span>About</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- signup - login -->
+    <div class="flex gap-2" *ngIf="(accountService.user$ | async) === null">
+      <button routerLink="/account/signup" class="btn-login">Signup</button>
+      <button routerLink="/account/login" class="btn-login">Login</button>
+    </div>
+
+    <!-- info -->
+    <div
+      class="flex gap-2 w-auto whitespace-nowrap"
+      *ngIf="accountService.user$ | async as user"
+    >
+      <button
+        routerLink="/account/edit-profile"
+        routerLinkActive="active"
+        class="btn-info hover:bg-gray-400 rounded-md p-1 duration-100"
+      >
+        Hello
+        <b routerLinkActive="text-white" class="text-blue-600 font-bold">{{
+          user.lastName
+        }}</b>
+      </button>
+      <button (click)="logout()" class="btn-logout">Logout</button>
+    </div>
+  </div>
+</nav>
