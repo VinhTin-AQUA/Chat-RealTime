@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { MessageChatToView } from '../shared/models/chat/messageChatToView';
 import { GroupService } from './group.service';
 import { GroupToView } from '../shared/models/chat/groupToView';
@@ -39,7 +39,7 @@ export class ChatService {
   async createChatConnection() {
     if (this.chatConnection?.state !== 'Connected') {
       this.chatConnection = new HubConnectionBuilder()
-        .withUrl(`${environment.appUrl}/hubs/chat`)
+        .withUrl(`${environment.hupUrl}/hubs/chat`)
         .withAutomaticReconnect()
         .build();
 

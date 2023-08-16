@@ -1,15 +1,6 @@
 <div
-  class="text-center text-[2em] font-bold mt-[20px] "
-  *ngIf="chatService.groupName === ''"
->
-  No groups
-</div>
-
-<div
-  *ngIf="chatService.groupName !== ''"
   class="w-[300px] sm:w-[600px] md:w-[950px] lg:w-[1200px] xl:w-[1420px] h-full flex"
 >
-
   <!-- list group -->
   <div class="w-[80px] sm:w-[150px] md:w-[250px] mt-2">
     <!-- action -->
@@ -33,7 +24,10 @@
     <ul
       class="p-2 overflow-y-scroll h-[600px] min-w-[100px] sm:min-w-[150px] md:w-full"
     >
-      <li *ngFor="let group of chatService.groups" class="mb-1 cursor-pointer select-none">
+      <li
+        *ngFor="let group of chatService.groups"
+        class="mb-1 cursor-pointer select-none"
+      >
         <div class="group-item text-[0.6em] sm:text-[1em]">
           <div
             (click)="switchGroup(group)"
@@ -45,7 +39,7 @@
 
           <button
             (click)="leaveGroup(group)"
-            class="bg-red-100 hover:bg-red-300 hover:text-white p-2 duration-100 "
+            class="bg-red-100 hover:bg-red-300 hover:text-white p-2 duration-100"
           >
             <mat-icon class="icon-switch-btn">first_page</mat-icon>
           </button>
@@ -54,20 +48,24 @@
     </ul>
   </div>
 
+  <div
+    class="text-center text-[2em] font-bold mt-[20px] w-full"
+    *ngIf="chatService.groupName === ''"
+  >
+    No groups
+  </div>
+
   <!-- messages -->
-  <div class="w-full h-full border-l-2 ">
+  <div *ngIf="chatService.groupName !== ''" class="w-full h-full border-l-2">
     <!-- room name -->
     <div class="leading-9 pl-2 text-[2em] font-bold border-b-2">
       <div>{{ chatService.groupName }}</div>
     </div>
 
     <!-- content -->
-    <div class="flex h-auto w-full ">
+    <div class="flex h-auto w-full">
       <!-- messages -->
-      <div
-        #messBox
-        class="w-4/5 h-[500px] border-r-2 overflow-y-scroll"
-      >
+      <div #messBox class="w-4/5 h-[500px] border-r-2 overflow-y-scroll">
         <div *ngFor="let mess of chatService.messages">
           <div
             *ngIf="mess.sender !== chatService.myName"
@@ -90,7 +88,7 @@
       </div>
 
       <!-- user online -->
-      <div class="h-[500px] w-2/5 sm:w-1/5 ">
+      <div class="h-[500px] w-2/5 sm:w-1/5">
         <div
           class="overflow-hidden bg-blue-200 text-[#2e1065] leading-8 h-10 m-2 text-center text-xl"
         >
@@ -158,5 +156,4 @@
       </button>
     </div>
   </div>
-  
 </div>

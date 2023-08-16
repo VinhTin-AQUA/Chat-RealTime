@@ -89,7 +89,40 @@ namespace NotifyBotApi.Repositories
             context.GroupUsers.Remove(groupUser);
             return await Save();
         }
+        public async Task<bool> HasMessage(string groupId)
+        {
+            var messages = await context.MessageChats
+                .Where(m => m.GroupId == groupId)
+                .AnyAsync();
+            return messages;
+        }
 
+        public async Task<bool> DeleteMessages(string groupId)
+        {
+            var messages = await context.MessageChats
+                .Where(m => m.GroupId == groupId)
+                .ToListAsync();
+            context.MessageChats.RemoveRange(messages);
+            return await Save();
+        }
+
+        public async Task<bool> DeleteGroupEmpty(string groupId)
+        {
+            var memeberTotal = await GetUsersOfGroup(groupId);
+            if(memeberTotal.ToList().Count() <= 0)
+            {
+                // delete messages og group if existed
+                if(await HasMessage(groupId) == true)
+                {
+                   await DeleteMessages(groupId);
+                }
+
+                var group = await GetGroupById(groupId);
+                context.Groups.Remove(group);
+                return await Save();
+            }
+            return false;
+        }
         public async Task<bool> SetHasNewMessage(string groupId, bool hasNewMessage)
         {
             var group = await context.Groups.FindAsync(groupId);

@@ -16,6 +16,9 @@ namespace NotifyBotApi.Interfaces
         Task<bool> GroupExistById(string groupId);
         Task<bool> LaaveGroup(GroupUser groupUser);
         Task<ICollection<string>> GetUsersOfGroup(string groupId);
+        Task<bool> HasMessage(string groupId);
+        Task<bool> DeleteMessages(string groupId);
+        Task<bool> DeleteGroupEmpty(string groupId);
         Task<bool> SetHasNewMessage(string groupId, bool hasNewMessage);
     }
 }

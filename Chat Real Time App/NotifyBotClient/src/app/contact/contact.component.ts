@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { SharedService } from '../shared/shared.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class ContactComponent implements OnInit {
     if (this.formGroup.valid) {
       this.http
         .post(
-          `${environment.appUrl}/api/contact/add-contact`,
+          `${environment.appUrl}/contact/add-contact`,
           this.formGroup.value
         )
         .subscribe({

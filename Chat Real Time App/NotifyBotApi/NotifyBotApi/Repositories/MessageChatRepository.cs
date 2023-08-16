@@ -13,24 +13,23 @@ namespace NotifyBotApi.Repositories
         {
             this.context = context;
         }
-
         public async Task<bool> Save()
         {
             var result = await context.SaveChangesAsync();
             return result > 0;
         }
-
         public async Task<ICollection<MessageChat>> GetMessagesChatOfGroup(string groupId)
         {
             var messages = await context.MessageChats
                 .Where(x => x.GroupId == groupId).ToListAsync();
             return messages;
         }
-
         public async Task<bool> SendMessage(MessageChat message)
         {
             context.MessageChats.Add(message);
             return await Save();
         }
+
+        
     }
 }

@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.accountService.register(this.registerForm.value).subscribe({
         next: (res: any) => {
-          this.router.navigate(['/account/send-confirmation-email'], {
+          this.router.navigate(['/account/send-email'], {
             queryParams: {
               state: true,
               title: res.value.title,

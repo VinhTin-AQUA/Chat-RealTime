@@ -10,7 +10,7 @@ const routes: Routes = [
     component: RoomComponent,
     title: 'chat rooms',
     children: [
-      { path: '', component: ChatComponent, title: 'search' },
+      { path: '', component: ChatComponent, title: 'chat' },
       { path: 'search-member', component: SearchMemberComponent, title: 'search' },
     ],
   },

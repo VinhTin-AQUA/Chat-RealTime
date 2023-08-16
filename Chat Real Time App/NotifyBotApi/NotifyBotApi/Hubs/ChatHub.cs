@@ -102,6 +102,9 @@ namespace NotifyBotApi.Hubs
                 await Clients.Caller.SendAsync("LeaveGroup", group);
                 return;
             }
+
+
+            await groupRepository.DeleteGroupEmpty(groupId);
             string onlineUser = user.FirstName + " " + user.LastName;
             await Clients.Caller.SendAsync("LeaveGroup", groupId);
             await Clients.Others.SendAsync("LeaveGroupOthers", onlineUser);
@@ -143,8 +146,11 @@ namespace NotifyBotApi.Hubs
 
         public async Task RemoveOnlineUser(string groupName, string onlineUser)
         {
-            chatService.RemoveUserOnline(groupName, onlineUser);
-            await Clients.Groups(groupName).SendAsync("RemoveOnlineUser", onlineUser);
+            if(string.IsNullOrEmpty(groupName) == false)
+            {
+                chatService.RemoveUserOnline(groupName, onlineUser);
+                await Clients.Groups(groupName).SendAsync("RemoveOnlineUser", onlineUser);
+            }
         }
 
         //được người khác add vào
